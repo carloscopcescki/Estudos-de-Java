@@ -1,5 +1,5 @@
 public class ParteCarro {
-    private String nome;
+    private final String nome;
 
     public ParteCarro(String nome) {
         this.nome = nome;

@@ -1,7 +1,7 @@
 public class Carro extends Veiculo {
-    private ParteCarro[] portas;
-    private ParteCarro[] pneus;
-    private ParteCarro motor;
+    private final ParteCarro[] portas;
+    private final ParteCarro[] pneus;
+    private final ParteCarro motor;
 
     public Carro(int anoFabricacao, float quantidadeGasolina, ParteCarro[] portas, ParteCarro[] pneus, ParteCarro motor) {
         super(anoFabricacao, quantidadeGasolina);

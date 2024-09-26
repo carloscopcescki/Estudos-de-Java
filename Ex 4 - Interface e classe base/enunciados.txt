@@ -1,0 +1,18 @@
+1. Crie uma interface chamada MeioDePagamento que declare os métodos autorizarPagamento() e
+processarPagamento().
+
+2. Crie uma classe base chamada Pagamento que implementa a interface MeioDePagamento. Ela deve conter
+um atributo valor e um método mostrarDetalhes(), que imprime os detalhes do pagamento.
+
+3. Crie classes derivadas como CartaoDeCredito, BoletoBancario e Pix que herdam de Pagamento e
+forneçam implementações específicas dos métodos da interface.
+
+4. No programa principal, crie uma lista de diferentes meios de pagamento e demonstre o comportamento de
+cada um ao autorizar e processar o pagamento.
+
+Exemplo do comportamento esperado:
+● Para o cartão de crédito, a autorização pode ser "Autorizando pagamento via cartão de crédito" e o
+processamento "Processando pagamento no valor de R$ 100,00 via cartão de crédito".
+● Para o boleto bancário, a autorização pode ser "Autorizando pagamento via boleto" e o processamento
+"Processando pagamento no valor de R$ 100,00 via boleto bancário".
+● Para o Pix, a autorização pode ser "Autorizando

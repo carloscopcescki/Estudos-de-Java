@@ -1,0 +1,13 @@
+1. Crie uma interface chamada Animal, que declare o método emitirSom().
+
+2. Crie classes que implementam essa interface: Cachorro, Gato e Vaca. Cada uma
+dessas classes deve fornecer sua própria implementação do método emitirSom().
+
+3. No programa principal, crie uma lista de objetos do tipo Animal, adicione objetos de
+cada uma das classes criadas e percorra essa lista chamando o método emitirSom()
+para cada animal.
+
+Exemplo do comportamento esperado:
+● Um cachorro deve emitir o som "Au au!"
+● Um gato deve emitir o som "Miau!"
+● Uma vaca deve emitir o som "Muu!"

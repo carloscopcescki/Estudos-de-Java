@@ -1,6 +1,10 @@
 package br.fsa;
 
 import org.apache.commons.cli.*;
+import br.fsa.pessoas.Aluno;
+import java.util.Scanner;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 public class GerenciaFaculdade {
     public static void main(String[] args) {
@@ -76,8 +80,61 @@ public class GerenciaFaculdade {
     }
 
     private static void addAluno() {
-        System.out.println("Adicionando um novo aluno...");
-        // Implementar criação e armazenamento do aluno
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Informe os dados do novo aluno:");
+        System.out.println("Nome do aluno: ");
+        String nome = scanner.nextLine();
+
+        System.out.println("Data de nascimento (dd/mm/yyyy): ");
+        String dataNascStr = scanner.nextLine();
+        Date dataNasc = null;
+        try{
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/mm/yyyy");
+            dataNasc = simpleDateFormat.parse(dataNascStr);
+        } catch (Exception e) {
+            System.out.println("Data inválida");
+            dataNasc = new Date();
+        }
+
+        System.out.print("CEP: ");
+        String cep = scanner.nextLine();
+
+        System.out.print("Rua: ");
+        String rua = scanner.nextLine();
+
+        System.out.print("Número: ");
+        String numero = scanner.nextLine();
+
+        System.out.print("Cidade: ");
+        String cidade = scanner.nextLine();
+
+        System.out.print("Estado: ");
+        String estado = scanner.nextLine();
+
+        System.out.print("Telefone: ");
+        String telefone = scanner.nextLine();
+
+        System.out.print("Gênero: ");
+        String genero = scanner.nextLine();
+
+        System.out.print("RG: ");
+        String rg = scanner.nextLine();
+
+        System.out.print("CPF: ");
+        String cpf = scanner.nextLine();
+
+        System.out.print("Curso: ");
+        String curso = scanner.nextLine();
+
+        System.out.print("Código único: ");
+        String codUnico = scanner.nextLine();
+
+        Aluno aluno = new Aluno(nome, dataNasc, cep, rua, numero, cidade, estado, telefone, genero, rg, cpf, curso, codUnico);
+
+        System.out.println("Aluno adicionado!");
+        System.out.println("Nome: " + aluno.getNome());
+        System.out.println("Curso: " + aluno.getCurso());
+        System.out.println("Código Único: " + aluno.getCodUnico());
     }
 
     private static void listaAluno() {

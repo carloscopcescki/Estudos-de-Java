@@ -43,7 +43,7 @@ public class Aluno extends Pessoa {
     public String toString() {
         return "Aluno{" +
                 "nome=" + getNome() +
-                ", dataNasc=" + getDataNasc() +
+                ", dataNasc=" + getDataNascimento() +
                 ", codUnico='" + codUnico + '\'' +
                 ", curso='" + curso + '\'' +
                 '}';

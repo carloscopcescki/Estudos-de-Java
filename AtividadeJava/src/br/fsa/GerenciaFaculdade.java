@@ -4,6 +4,7 @@
 
 package br.fsa;
 
+import br.fsa.faculdade.Nota;
 import org.apache.commons.cli.*;
 
 import br.fsa.faculdade.Curso;
@@ -23,6 +24,7 @@ public class GerenciaFaculdade {
     private static List<Professor> professores = new ArrayList<>();
     private static List<Curso> cursos = new ArrayList<>();
     private static List<Materia> materias = new ArrayList<>();
+    private static List<Nota> notas = new ArrayList<>();
 
     public static void main(String[] args) {
         Options options = new Options();
@@ -154,14 +156,15 @@ public class GerenciaFaculdade {
     }
 
     private static void listaAluno() {
-        System.out.println("Alunos cadastrados: ");
-        if (alunos.isEmpty()) {
-            System.out.println("Nenhum aluno cadastrado.");
-        } else {
-            for (Aluno aluno : alunos) {
-                System.out.println("Nome: " + aluno.getNome() +
-                                   " | Curso: " + aluno.getCurso() +
-                                   " | Código Único: " + aluno.getCodUnico());
+        if(alunos.isEmpty()){
+            System.out.println("Não há alunos!");
+        }else{
+            System.out.println("Lista de alunos: ");
+            for(Aluno aluno : alunos){
+                System.out.println("Código: " + aluno.getCodUnico());
+                System.out.println("Nome: " + aluno.getNome());
+                System.out.println("Curso: " + aluno.getCurso());
+                System.out.println("----------------------------------------");
             }
         }
     }
@@ -271,42 +274,170 @@ public class GerenciaFaculdade {
     }
 
     private static void listaProfessor() {
-        System.out.println("Listando todos os professores...");
-        // Implementar listagem dos professores
+        if(professores.isEmpty()){
+            System.out.println("Não há professores!");
+        }else{
+            System.out.println("Lista de professores: ");
+            for(Professor professor : professores){
+                System.out.println("Código: " + professor.getCodUnico());
+                System.out.println("Nome: " + professor.getNome());
+                System.out.println("Matéria: " + String.join(", ", professor.getListaMaterias()));
+                System.out.println("----------------------------------------");
+            }
+        }
     }
 
     private static void editaProfessor(String codigoProfessor) {
-        System.out.println("Editando professor de código: " + codigoProfessor);
-        // Implementar lógica de edição do professor
+        Professor professor = null;
+        for(Professor p : professores){
+            if(p.getCodUnico().equals(codigoProfessor)){
+                professor = p;
+                break;
+            }
+        }
+
+        if (professor == null){
+            System.err.println("Código não encontrado: " + codigoProfessor);
+            return;
+        }
+
+        System.out.println("Editando professor: " + professor.getNome());
+        System.out.println("Nome: " + professor.getNome());
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Insira um novo nome: ");
+        String novoNomeProfessor = scanner.nextLine();
+        if(!novoNomeProfessor.isEmpty()){
+            professor.setNome(novoNomeProfessor);
+        }
+
+        System.out.println("Dados atualizados:");
+        System.out.println("Nome: " + professor.getNome());
     }
 
     private static void addCurso() {
-        System.out.println("Adicionando um novo curso...");
-        // Implementar criação e armazenamento do curso
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Informe o código do curso: ");
+        String codigoCurso = scanner.nextLine();
+
+        Curso novoCurso = new Curso(cursos, codigoCurso);
+        cursos.add(novoCurso);
+        System.out.println("Curso com código " + codigoCurso + " adicionado com sucesso!");
     }
 
     private static void listaCurso() {
-        System.out.println("Listando todos os cursos...");
-        // Implementar listagem dos cursos
+        if(cursos.isEmpty()){
+            System.out.println("Nenhum curso foi cadastrado!");
+            return;
+        }
+
+        System.out.println("Lista de cursos: ");
+        for(Curso curso : cursos){
+            System.out.println("Código: " + curso.getCodigo());
+            if(curso.getListaMaterias().isEmpty()){
+                System.out.println("Nenhuma matéria foi cadastrada!");
+            }else{
+                System.out.println("Matérias: ");
+                for(Materia materia : curso.getListaMaterias()){
+                    System.out.println("Código da Matéria: " + materia.getCodigo() + ", Curso: " + materia.getCurso());
+                }
+            }
+        }
     }
 
     private static void addMateria() {
-        System.out.println("Adicionando uma nova matéria...");
-        // Implementar criação e armazenamento da matéria
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Digite o nome do curso associado à matéria: ");
+        String curso = scanner.nextLine();
+
+        System.out.print("Informe o código da matéria: ");
+        String codigoUnico = scanner.nextLine();
+
+        Materia novaMateria = new Materia(curso, codigoUnico, notas);
+        materias.add(novaMateria);
+
+        System.out.println("Matéria cadastrada! Curso: " + curso + ", Código: " + codigoUnico);
     }
 
     private static void listaMateria(String codigoCurso) {
-        System.out.println("Listando matérias do curso: " + codigoCurso);
-        // Implementar listagem das matérias associadas ao curso
+        Curso cursoCadastrado = null;
+        for(Curso curso : cursos){
+            if(curso.getCodigo().equals(codigoCurso)){
+                cursoCadastrado = curso;
+                break;
+            }
+        }
+
+        if(cursoCadastrado == null){
+            System.out.println("Curso com código " + codigoCurso + "não cadastrado!");
+            return;
+        }
+
+        System.out.println("Matérias do Curso " + codigoCurso + ":");
+        List<Materia> materias = cursoCadastrado.getListaMaterias();
+        if (materias.isEmpty()) {
+            System.out.println("Nenhuma matéria cadastrada para este curso.");
+        } else {
+            for (Materia materia : materias) {
+                System.out.println("Código da Matéria: " + materia.getCodigo() + ", Curso: " + materia.getCurso());
+            }
+        }
     }
 
-    private static void addNota(String tipoAvaliacao, String codigoAluno, String codigoMateria, double nota) {
-        System.out.printf("Adicionando nota %s de %s para aluno %s na matéria %s%n", nota, tipoAvaliacao, codigoAluno, codigoMateria);
-        // Implementar armazenamento da nota
+    public static void addNota(Materia materia, String tipoAvaliacao, double nota) {
+        Nota notaCadastrada = materia.getListaNota().stream().findFirst().orElse(new Nota());
+
+        switch (tipoAvaliacao) {
+            case "P1":
+                notaCadastrada.setP1(nota);
+                System.out.println("Nota " + nota + " adicionada para P1");
+                break;
+            case "P2":
+                notaCadastrada.setP2(nota);
+                System.out.println("Nota " + nota + " adicionada para P2");
+                break;
+            case "Trabalho":
+                notaCadastrada.setTrabalho(nota);
+                System.out.println("Nota " + nota + " adicionada para Trabalho");
+                break;
+            default:
+                System.out.println("Tipo de avaliação inválido");
+                return;
+        }
+
+        if (materia.getListaNota().isEmpty()) {
+            materia.getListaNota().add(notaCadastrada);
+        }
     }
 
-    private static void fechaMedia(String codigoAluno) {
-        System.out.println("Calculando média final do aluno de código: " + codigoAluno);
-        // Implementar cálculo de média
+    public static void fechaMedia(Aluno aluno, List<Materia> listaMaterias) {
+        double p1, p2, trabalho, media;
+        String status;
+
+        System.out.println("Matérias e Médias do Aluno: " + aluno.getCodUnico());
+
+        for (Materia materia : listaMaterias) {
+            if (materia.getCurso().equals(aluno.getCurso())) {
+                for (Nota nota : materia.getListaNota()) {
+                    p1 = nota.getP1();
+                    p2 = nota.getP2();
+                    trabalho = nota.getTrabalho();
+
+                    media = (p1 + p2) * 0.8 + trabalho * 0.2;
+
+                    if (media < 5.0) {
+                        status = "Em Recuperação";
+                    } else {
+                        status = "APROVADO";
+                    }
+
+                    System.out.println("Matéria: " + materia.getCodigo() +
+                            " | Média: " + media +
+                            " | Status: " + status);
+                }
+            }
+        }
     }
 }

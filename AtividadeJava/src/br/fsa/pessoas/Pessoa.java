@@ -2,6 +2,10 @@ package br.fsa.pessoas;
 
 import java.util.Date;
 
+/**
+ * Classe que representa a pessoa física
+ */
+
 public abstract class Pessoa {
 
     protected String nome;
@@ -16,9 +20,29 @@ public abstract class Pessoa {
     protected String rg;
     protected String cpf;
 
+
+    /**
+     * Construtor padrão para inicializar a classe Pessoa
+     */
+
     public Pessoa() {
         super();
     }
+
+    /**
+     * Construtor que inicializa a classe com as informações pessoais do indivíduo
+     * @param nome
+     * @param dataNasc
+     * @param cep
+     * @param rua
+     * @param numero
+     * @param cidade
+     * @param estado
+     * @param telefone
+     * @param genero
+     * @param rg
+     * @param cpf
+     */
 
     public Pessoa(String nome, Date dataNasc, String cep, String rua, String numero, String cidade, String estado,
                   String telefone, String genero, String rg, String cpf) {

@@ -33,7 +33,7 @@ public class Materia {
     }
 
     public void setCodigo(String codigoUnico){
-        this.curso = codigoUnico;
+        this.codigoUnico = codigoUnico;
     }
 
     public List<Nota> getListaNota(){

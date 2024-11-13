@@ -1,6 +1,17 @@
 package br.fsa.util;
 
+/**
+ * Classe utilitária, usada para validação de dados
+ */
+
 public class Utilitarios {
+
+    /**
+     * Realiza a verificação do CPF
+     * @param cpf
+     * @return
+     */
+
     public static boolean verificaCPF(String cpf) {
 
         cpf = cpf.replaceAll("\\D", "");
@@ -35,9 +46,21 @@ public class Utilitarios {
                (cpf.charAt(10) - '0') == segundoDigitoVerificador;
     }
 
+    /**
+     * Valida o formato de número do telefone
+     * @param telefone
+     * @return
+     */
+
     public static boolean validaTelefone(String telefone) {
         return telefone.matches("\\(\\d{2}\\) \\d{4,5}-\\d{4}");
     }
+
+    /**
+     * Valida o formato do endereço de e-mail
+     * @param email
+     * @return
+     */
 
     public static boolean validaEmail(String email) {
         return email.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");

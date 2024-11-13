@@ -7,7 +7,7 @@ public class Curso {
     protected List<Materia> listaMaterias;
     protected String codigoUnico;
 
-    public Curso(){
+    public Curso(List<Curso> cursos, String codigoCurso){
         this.listaMaterias = new ArrayList<>();
         this.codigoUnico = "";
     }

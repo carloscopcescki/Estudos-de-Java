@@ -4,8 +4,16 @@ import br.fsa.pessoas.Professor;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe responsável por implementar o método da interface LeitorArquivo
+ * Referente a Professor
+ */
+
 public class ProfessorDAO extends BaseDAO<Professor> {
 
+    /**
+     * Método para salvar lista de professores
+     */
     @Override
     public void salvarLista(List<Professor> lista){
         List<String> linhas = new ArrayList<>();

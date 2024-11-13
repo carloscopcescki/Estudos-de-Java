@@ -1,3 +1,7 @@
+/**
+ * Classe responsável por realizar a leitura e salvar a lista de objetos em CSV
+ */
+
 package br.fsa.dao;
 
 import java.util.List;
